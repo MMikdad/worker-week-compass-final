@@ -115,7 +115,7 @@ const WeeklyCalendar: React.FC = () => {
         </div>
       </div>
       
-      <div className="text-center py-2 font-medium text-gray-500 dark:text-gray-400">
+      <div className="text-center py-2 font-medium text-gray-500 dark:text-gray-300">
         {viewMode === "week" ? (
           <>
             {format(weekDays[0], "MMMM d")} - {format(weekDays[4], "MMMM d, yyyy")}
@@ -137,7 +137,7 @@ const WeeklyCalendar: React.FC = () => {
         <div className="overflow-auto">
           <div className="grid grid-cols-7 text-center py-2 border-b dark:border-gray-700">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-              <div key={day} className="font-medium text-gray-500 dark:text-gray-400">
+              <div key={day} className="font-medium text-gray-500 dark:text-gray-300">
                 {day}
               </div>
             ))}

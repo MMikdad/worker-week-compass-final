@@ -33,19 +33,18 @@ const AppLayout: React.FC = () => {
     <div className="container mx-auto p-4 max-w-6xl">
       <header className="mb-8 flex justify-between items-center">
       <div className="text-center ml-40">
-      {/* Moves it slightly to the right */}
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Team Calendar</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl font-bold mb-2">Team Calendar</h1>
+          <p className="mb-2">
             Manage your team's office and remote work schedule
           </p>
-          <p className="text-xs text-red-600 mt-2">Verantwortlich: Maher Mikdad</p>
+          <p className="text-xs text-red-600 dark:text-red-400 mt-2">Verantwortlich: Maher Mikdad</p>
         </div>
         
         <div className="flex items-center gap-4">
           <ShareButton />
           <span className="text-sm font-medium">
-            Signed in as <span className="text-blue-600">{user?.username}</span> 
-            {isAdmin() && <span className="ml-1 bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-xs">Admin</span>}
+            Signed in as <span className="text-blue-600 dark:text-blue-400">{user?.username}</span> 
+            {isAdmin() && <span className="ml-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 px-2 py-0.5 rounded-full text-xs">Admin</span>}
           </span>
           <Button variant="outline" size="sm" onClick={logout} className="flex items-center gap-2">
             <LogOut className="h-4 w-4" />
@@ -97,7 +96,7 @@ const AppLayout: React.FC = () => {
           <WeeklyCalendar />
           
           <div className="mt-6">
-            <Tabs defaultValue="legend" className="bg-white rounded-lg shadow">
+            <Tabs defaultValue="legend" className="bg-white dark:bg-gray-800 rounded-lg shadow">
               <TabsList className="w-full">
                 <TabsTrigger value="legend" className="flex-1">Legend</TabsTrigger>
                 <TabsTrigger value="help" className="flex-1">Tips & Help</TabsTrigger>
@@ -131,7 +130,7 @@ const AppLayout: React.FC = () => {
                 </div>
               </TabsContent>
               <TabsContent value="help" className="p-4">
-                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                   <li>Click on a team member's cell to cycle through work locations</li>
                   <li>Use the tabs above to switch between teams or view all teams</li>
                   <li>Days highlighted in red have no one in the office</li>
@@ -148,7 +147,7 @@ const AppLayout: React.FC = () => {
         <div className="space-y-6">
           <NotesPanel />
           
-          <Tabs defaultValue="users" className="bg-white rounded-lg shadow">
+          <Tabs defaultValue="users" className="bg-white dark:bg-gray-800 rounded-lg shadow">
             <TabsList className="w-full">
               <TabsTrigger value="users" className="flex-1">Team</TabsTrigger>
               <TabsTrigger value="events" className="flex-1">Events</TabsTrigger>
@@ -164,7 +163,7 @@ const AppLayout: React.FC = () => {
                 </>
               ) : (
                 <div>
-                  <p className="text-amber-600 mb-4">Only admins can manage team members</p>
+                  <p className="text-amber-600 dark:text-amber-400 mb-4">Only admins can manage team members</p>
                   <UserList />
                 </div>
               )}
@@ -173,8 +172,8 @@ const AppLayout: React.FC = () => {
               {isAdmin() ? (
                 <AddEventForm />
               ) : (
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <p className="text-amber-600">Only admins can add team events</p>
+                <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <p className="text-amber-600 dark:text-amber-400">Only admins can add team events</p>
                 </div>
               )}
             </TabsContent>

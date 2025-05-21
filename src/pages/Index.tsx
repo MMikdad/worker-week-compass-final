@@ -28,7 +28,7 @@ const Index = () => {
   
   return (
     <TeamProvider>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-800 transition-colors duration-200">
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
         <div className="absolute top-4 left-40 z-20">
           <ThemeSwitcher />
         </div>

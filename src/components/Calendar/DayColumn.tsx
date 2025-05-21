@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useTeam, WorkLocation } from "@/context/TeamContext";
 import { useAuth } from "@/context/AuthContext";
@@ -122,20 +123,20 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
 
   const getLocationColor = (location: WorkLocation): string => {
     switch (location) {
-      case "office": return "text-green-700";
-      case "home": return "text-purple-700";
-      case "urlaub": return "text-blue-700";
-      case "other": return "text-amber-700";
-      default: return "text-gray-500";
+      case "office": return "text-green-700 dark:text-green-400";
+      case "home": return "text-purple-700 dark:text-purple-400";
+      case "urlaub": return "text-blue-700 dark:text-blue-400";
+      case "other": return "text-amber-700 dark:text-amber-400";
+      default: return "text-gray-500 dark:text-gray-400";
     }
   };
 
   const getLocationBgColor = (location: WorkLocation): string => {
     switch (location) {
-      case "office": return "bg-green-50";
-      case "home": return "bg-purple-50";
-      case "urlaub": return "bg-blue-50";
-      case "other": return "bg-amber-50";
+      case "office": return "bg-green-50 dark:bg-green-900/20";
+      case "home": return "bg-purple-50 dark:bg-purple-900/20";
+      case "urlaub": return "bg-blue-50 dark:bg-blue-900/20";
+      case "other": return "bg-amber-50 dark:bg-amber-900/20";
       default: return "";
     }
   };
@@ -190,7 +191,7 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
       <div 
         className={cn(
           "flex flex-col h-full",
-          highlightNoPresence && "bg-red-50"
+          highlightNoPresence && "bg-red-50 dark:bg-red-900/20"
         )}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -201,7 +202,7 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
             <div 
               key={event.id} 
               className={cn(
-                "text-[10px] mb-1 p-0.5 rounded text-white truncate",
+                "text-[10px] mb-1 p-0.5 rounded text-white dark:text-white truncate",
                 event.name === "Feiertag" ? "bg-pink-500" : ""
               )}
               style={{ backgroundColor: event.name !== "Feiertag" ? event.color : "" }}
@@ -217,24 +218,24 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
           {officeMembers.slice(0, visibleMembers).map((member) => (
             <div 
               key={member.id}
-              className="flex items-center text-[10px] py-0.5 px-1 rounded bg-green-50"
+              className="flex items-center text-[10px] py-0.5 px-1 rounded bg-green-50 dark:bg-green-900/20 text-black dark:text-white"
             >
               <div 
                 className="w-1 h-1 rounded-full mr-1" 
                 style={{ backgroundColor: member.color }}
               />
               <span className="truncate">{member.name.split(' ')[0]}</span>
-              <span className="ml-1 text-green-700">(o)</span>
+              <span className="ml-1 text-green-700 dark:text-green-400">(o)</span>
             </div>
           ))}
           {hasMoreMembers && (
             <Popover>
               <PopoverTrigger asChild>
-                <div className="text-[10px] text-blue-600 bg-blue-50 rounded px-1 py-0.5 text-center cursor-pointer">
+                <div className="text-[10px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 rounded px-1 py-0.5 text-center cursor-pointer">
                   +{officeMembers.length - visibleMembers} more
                 </div>
               </PopoverTrigger>
-              <PopoverContent className="w-60 p-2">
+              <PopoverContent className="w-60 p-2 bg-white dark:bg-gray-800 dark:text-white">
                 <div className="space-y-3">
                   {teamsData.map((team) => {
                     // Filter for office members only in the popup
@@ -243,7 +244,7 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
                     
                     return (
                       <div key={team.name} className="space-y-1">
-                        <h4 className="font-medium border-b border-gray-200 pb-1">{team.name}:</h4>
+                        <h4 className="font-medium border-b border-gray-200 dark:border-gray-700 pb-1">{team.name}:</h4>
                         <div className="pl-2">
                           {officeOnly.map((member, i) => (
                             <div 
@@ -255,7 +256,7 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
                                 style={{ backgroundColor: member.color }}
                               />
                               <span>{member.name}</span>
-                              <span className="text-green-700">
+                              <span className="text-green-700 dark:text-green-400">
                                 (Office)
                               </span>
                             </div>
@@ -278,20 +279,20 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
     <div 
       className={cn(
         "flex flex-col border-r border-gray-800 min-w-[110px] lg:min-w-[140px] w-[20%]",
-        highlightNoPresence && "bg-red-50"
+        highlightNoPresence && "bg-red-50 dark:bg-red-900/20"
       )}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       <div className={cn(
         "py-2 px-3 text-center border-b border-gray-600",
-        isToday && "bg-blue-100",
-        holiday && "bg-pink-100"
+        isToday && "bg-blue-100 dark:bg-blue-900/30",
+        holiday && "bg-pink-100 dark:bg-pink-900/30"
       )}>
-        <div className="font-medium">{format(date, "EEE")}</div>
+        <div className="font-medium dark:text-white">{format(date, "EEE")}</div>
         <div className={cn(
-          "text-lg",
-          isToday && "font-bold text-blue-600"
+          "text-lg dark:text-white",
+          isToday && "font-bold text-blue-600 dark:text-blue-400"
         )}>
           {format(date, "d")}
         </div>
@@ -349,10 +350,11 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
               key={member.id}
               onClick={() => canEdit && handleLocationToggle(member.id, location)}
               className={cn(
-                "border-b border-gray-400 p-2 flex items-center gap-2 hover:bg-gray-50",
+                "border-b border-gray-400 dark:border-gray-700 p-2 flex items-center gap-2",
+                "hover:bg-gray-50 dark:hover:bg-gray-700",
                 getLocationBgColor(location),
                 holiday && "opacity-50",
-                canEdit ? "cursor-pointer" : "cursor-not-allowed"
+                canEdit ? "cursor-pointer" : "cursor-default"
               )}
             >
               <div 
@@ -361,13 +363,12 @@ const DayColumn: React.FC<DayColumnProps> = ({ date, isMonthView = false }) => {
               />
               
               <div className="flex-1 flex flex-col">
-                <span className="text-xs font-medium truncate">{member.name}</span>
+                <span className="text-xs font-medium truncate dark:text-white">{member.name}</span>
                 <span className={cn(
                   "text-xs",
                   getLocationColor(location)
                 )}>
                   {getLocationText(location)}
-                  {!canEdit && " (view only)"}
                 </span>
               </div>
             </div>
